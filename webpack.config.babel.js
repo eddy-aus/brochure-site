@@ -1,5 +1,5 @@
 // import CnameWebpackPlugin from 'cname-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+// import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import { namespace } from './src/config';
@@ -39,9 +39,9 @@ const commonWebpackConfig = {
     // new CnameWebpackPlugin({
     //   domain: 'www.example.com',
     // }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: path.join(__dirname, './src/public'), to: '.' }],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [{ from: path.join(__dirname, './src/public'), to: '.' }],
+    // }),
     new HtmlWebpackPlugin({
       filename: './index.html',
       inject: 'body',

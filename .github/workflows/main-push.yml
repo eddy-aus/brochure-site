@@ -20,3 +20,19 @@ jobs:
     - run: |
         chmod +x .github/scripts/create-github-release.sh
         .github/scripts/create-github-release.sh
+
+  create_github_pages_release:
+    name: Create GitHub Pages Release
+    needs: create_github_release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    - run: |
+        npm install --global yarn
+        yarn bootstrap-frozen
+        yarn build
+    - uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: gh-pages
+        folder: dist
