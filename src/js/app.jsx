@@ -43,7 +43,9 @@ const App = () => {
         <Preloader />
       ) : (
         <>
-          <h1 className={classNames}>Welcome to your future, Shane.</h1>
+          <h1 className={classNames}>
+            Welcome to <span style={{ fontStyle: 'italic' }}>Eddy</span>, Shane.
+          </h1>
         </>
       )}
     </Context.Provider>
