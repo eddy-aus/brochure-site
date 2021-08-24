@@ -1,0 +1,24 @@
+@use "sass:math";
+
+@function to-display-p3($color) {
+  $alpha: alpha($color);
+  $blue: blue($color);
+  $green: green($color);
+  $red: red($color);
+
+  @if $alpha == 1 {
+    @return color(
+      display-p3 #{math.div($red, 255)} #{math.div($green, 255)} #{math.div(
+          $blue,
+          255
+        )}
+    );
+  } @else {
+    @return color(
+      display-p3 #{math.div($red, 255)} #{math.div($green, 255)} #{math.div(
+          $blue,
+          255
+        )} unquote('/') #{$alpha * 100%}
+    );
+  }
+}

@@ -1,8 +1,11 @@
+// import CnameWebpackPlugin from 'cname-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
+import { namespace } from './src/config';
 
-const commonConfig = {
-  entry: './src/index',
+const commonWebpackConfig = {
+  entry: './src/js/app.jsx',
   module: {
     rules: [
       {
@@ -33,9 +36,20 @@ const commonConfig = {
     ],
   },
   plugins: [
+    // new CnameWebpackPlugin({
+    //   domain: 'www.example.com',
+    // }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: path.join(__dirname, './src/public'), to: '.' }],
+    }),
     new HtmlWebpackPlugin({
+      filename: './index.html',
       inject: 'body',
-      template: path.join(__dirname, './src/index.html'),
+      template: path.join(__dirname, './src/html/index.html'),
+      templateParameters: {
+        namespace,
+        title: 'Welcome | Eddy Australia',
+      },
     }),
   ],
   resolve: {
@@ -51,23 +65,23 @@ const commonConfig = {
 export default (env) => {
   if (env.development) {
     return {
-      ...commonConfig,
+      ...commonWebpackConfig,
       devServer: {
         contentBase: path.join(__dirname, './dist'),
         port: 3000,
       },
       mode: 'development',
       output: {
-        filename: 'app.js',
+        filename: 'js/app.js',
       },
     };
   }
 
   return {
-    ...commonConfig,
+    ...commonWebpackConfig,
     mode: 'production',
     output: {
-      filename: 'app.js',
+      filename: 'js/app.js',
       publicPath: '.',
     },
   };
