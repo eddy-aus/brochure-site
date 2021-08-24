@@ -1,16 +1,14 @@
 {
-  "name": "repo-template",
+  "name": "brochure-site",
   "version": "1.0.0",
   "private": true,
-  "description": "A template for bootstrapping a repo",
-  "homepage": "https://github.com/DanMad/repo-template#readme",
-  "bugs": "https://github.com/DanMad/repo-template/issues",
+  "description": "A brochure site for Eddy",
+  "homepage": "https://github.com/eddy-au/brochure-site#readme",
+  "bugs": "https://github.com/eddy-au/brochure-site/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DanMad/repo-template.git"
+    "url": "https://github.com/eddy-au/brochure-site.git"
   },
-  "license": "MIT",
-  "author": "DanMad",
   "main": "dist/index.js",
   "scripts": {
     "bootstrap": "rm -rf node_modules && yarn install && husky install && chmod +x .husky/*",
