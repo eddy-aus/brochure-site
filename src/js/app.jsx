@@ -1,15 +1,19 @@
 import 'on-the-case';
 import { useEffect, useState } from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Context from './components/context';
 import Preloader from './components/preloader';
+import Nav from './layouts/nav';
+import Contact from './pages/contact';
+import Home from './pages/home';
 import { namespace as ns } from '../config';
 import '../scss/styles.scss';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isPageMounted, setIsPageMounted] = useState(false);
   const [isPreloaderMounted, setIsPreloaderMounted] = useState(false);
-  const [isHeadingMounted, setIsHeadingMounted] = useState(false);
 
   useEffect(() => {
     if (isLoading) {
@@ -18,23 +22,20 @@ const App = () => {
       // Mocked response time.
       let timer = setTimeout(() => {
         setIsPreloaderMounted(false);
-
-        setTimeout(() => {
-          setIsHeadingMounted(true);
-        }, 500);
-      }, 3500);
+      }, 3000);
 
       return () => {
         clearTimeout(timer);
       };
+    } else {
+      setIsPageMounted(true);
     }
   }, [isLoading]);
-
-  let classNames = isHeadingMounted ? 'eddy-heading mounted' : 'eddy-heading';
 
   return (
     <Context.Provider
       value={{
+        isPageMounted,
         isPreloaderMounted,
         setIsLoading,
       }}
@@ -42,11 +43,13 @@ const App = () => {
       {isLoading ? (
         <Preloader />
       ) : (
-        <>
-          <h1 className={classNames}>
-            Welcome to <span style={{ fontStyle: 'italic' }}>Eddy</span>, Shane.
-          </h1>
-        </>
+        <Router>
+          <Nav />
+          <Switch>
+            <Route component={Home} exact path="/" />
+            <Route component={Contact} exact path="/contact" />
+          </Switch>
+        </Router>
       )}
     </Context.Provider>
   );
