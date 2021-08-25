@@ -1,6 +1,6 @@
 {
   "name": "brochure-site",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "A brochure site for Eddy",
   "homepage": "https://github.com/eddy-au/brochure-site#readme",
@@ -20,7 +20,8 @@
   "dependencies": {
     "on-the-case": "^2.0.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
