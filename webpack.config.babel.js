@@ -1,8 +1,9 @@
+import 'on-the-case';
 // import CnameWebpackPlugin from 'cname-webpack-plugin';
-// import CopyWebpackPlugin from 'copy-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
-import { namespace } from './src/config';
+import { namespace, pages } from './src/config';
 
 const commonWebpackConfig = {
   entry: './src/js/app.jsx',
@@ -39,17 +40,23 @@ const commonWebpackConfig = {
     // new CnameWebpackPlugin({
     //   domain: 'www.example.com',
     // }),
-    // new CopyWebpackPlugin({
-    //   patterns: [{ from: path.join(__dirname, './src/public'), to: '.' }],
-    // }),
-    new HtmlWebpackPlugin({
-      filename: './index.html',
-      inject: 'body',
-      template: path.join(__dirname, './src/html/index.html'),
-      templateParameters: {
-        namespace,
-        title: 'Welcome | Eddy Australia',
-      },
+    new CopyWebpackPlugin({
+      patterns: [{ from: path.join(__dirname, './src/public'), to: '.' }],
+    }),
+    ...pages.map((page) => {
+      const dirname = 'dirname' in page ? page.dirname : './';
+      const filename = 'filename' in page ? page.filename : 'index.html';
+      const pageTitle = page.title.toTitleCase();
+
+      return new HtmlWebpackPlugin({
+        inject: 'body',
+        filename: dirname + filename,
+        template: path.join(__dirname, './src/html/index.html'),
+        templateParameters: {
+          namespace,
+          title: pageTitle + ' | Eddy Australia',
+        },
+      });
     }),
   ],
   resolve: {
@@ -73,6 +80,7 @@ export default (env) => {
       mode: 'development',
       output: {
         filename: 'js/app.js',
+        publicPath: 'http://localhost:3000',
       },
     };
   }
@@ -82,6 +90,7 @@ export default (env) => {
     mode: 'production',
     output: {
       filename: 'js/app.js',
+      // Update with CNAME
       publicPath: '.',
     },
   };

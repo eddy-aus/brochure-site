@@ -1,27 +1,31 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Context from '../components/context';
+import { BEM } from '../utils';
+import { namespace as ns } from '../../config';
+
+const { block, element } = BEM('nav');
 
 const Nav = () => {
   const { isPageMounted } = useContext(Context);
-  const classNames = `eddy-nav${isPageMounted ? ' mounted' : ''}`;
+  const classNames = `${block()}${isPageMounted ? ' mounted' : ''}`;
 
   return (
     <nav className={classNames}>
-      <span className="eddy-nav__item">
+      <span className={element('item')}>
         <NavLink
-          activeClassName="eddy-active"
-          className="eddy-nav__link"
+          activeClassName={ns + '-active'}
+          className={element('link')}
           exact
-          to="/"
+          to="/home"
         >
           Home
         </NavLink>
       </span>
-      <span className="eddy-nav__item">
+      <span className={element('item')}>
         <NavLink
-          activeClassName="eddy-active"
-          className="eddy-nav__link"
+          activeClassName={ns + '-active'}
+          className={element('link')}
           exact
           to="/contact"
         >
