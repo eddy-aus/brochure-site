@@ -1,4 +1,5 @@
 @import '../utils/tokens';
+@import '../mixins/display-p3';
 
 body {
   @include display-p3(background-color, $nero);
