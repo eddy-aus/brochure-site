@@ -1,0 +1,10 @@
+@import '../utils/tokens';
+
+body {
+  @include display-p3(background-color, $nero);
+  @include display-p3(color, $snow);
+}
+
+.#{$ns}-input {
+  background-color: transparent;
+}
