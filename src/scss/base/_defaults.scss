@@ -2,11 +2,12 @@
 @import '../mixins/center';
 @import '../mixins/display-p3';
 
-html,
 body {
-  // Possibly a better place to put this so that the site doesn't move when
-  // there is nothing further to scroll??
-  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  @include display-p3(background-color, $nero);
+  @include display-p3(color, $snow);
+  font-family: $font-family-system;
 
   // These rules improve font antialiasing on Mac OS.
   -webkit-font-smoothing: antialiased;
@@ -20,14 +21,14 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-// This might need to be thematically contextual and moved to the themes dir.
+iframe {
+  width: 100vw;
+  margin-top: 100px;
+}
+
 .#{$ns}-app {
-  position: relative;
   height: 100vh;
   width: 100vw;
-  @include display-p3(background-color, $nero);
-  @include display-p3(color, $snow);
-  font-family: $font-family-system;
 }
 
 .#{$ns}-heading {

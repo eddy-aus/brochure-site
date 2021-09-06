@@ -74,13 +74,13 @@ export default (env) => {
     return {
       ...commonWebpackConfig,
       devServer: {
-        contentBase: path.join(__dirname, './dist'),
         port: 3000,
+        static: path.join(__dirname, './dist'),
       },
       mode: 'development',
       output: {
         filename: 'js/app.js',
-        publicPath: 'http://localhost:3000',
+        // publicPath: 'http://localhost:3000',
       },
     };
   }
