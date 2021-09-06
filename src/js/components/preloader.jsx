@@ -7,7 +7,6 @@ const Preloader = () => {
   const handleTransitionEnd = () => {
     if (!isPreloaderMounted) {
       setIsLoading(false);
-      console.log('firing');
     }
   };
 
