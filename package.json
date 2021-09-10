@@ -13,8 +13,7 @@
   "scripts": {
     "bootstrap": "rm -rf node_modules && yarn install && husky install && chmod +x .husky/*",
     "bootstrap-frozen": "rm -rf node_modules && yarn install --frozen-lockfile && husky install && chmod +x .husky/*",
-    "build": "rm -rf dist && webpack && yarn build-wufoo",
-    "build-wufoo": "rm -rf dist/themes && node-sass src/scss/themes --output dist/themes --output-style compressed",
+    "build": "rm -rf dist && webpack",
     "format": "sort-package-json && prettier --write \"**/*\"",
     "start": "webpack serve --env development"
   },

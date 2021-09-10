@@ -1,15 +1,18 @@
-@function to-display-p3($color) {
-  $alpha: alpha($color);
-  $blue: blue($color);
-  $green: green($color);
-  $red: red($color);
+@use "sass:math";
 
-  @if $alpha == 1 {
-    @return color(display-p3 #{$red / 255} #{$green / 255} #{$blue / 255});
-  } @else {
-    @return color(
-      display-p3 #{$red / 255} #{$green / 255} #{$blue / 255} unquote('/') #{$alpha *
-        100%}
-    );
+@function to-display-p3($color) {
+  $r: red($color);
+  $g: green($color);
+  $b: blue($color);
+  $a: alpha($color);
+
+  $statement: 'color(display-p3 #{math.div($r, 255)} #{math.div($g, 255)} #{math.div($b, 255)}';
+
+  @if $a != 1 {
+    $statement: $statement + ' / #{$a * 100%}';
   }
+
+  $statement: $statement + ')';
+
+  @return unquote($statement);
 }

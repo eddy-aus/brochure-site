@@ -21,12 +21,11 @@
 }
 
 .eddy-spinner__ring:nth-of-type(1) {
-  // @include display-p3(stroke, #{rgba($snow, 0.2)});
-  stroke: rgba($snow, 0.2);
+  @include display-p3(stroke, $color-gray-8);
 }
 
 .eddy-spinner__ring:nth-of-type(2) {
-  @include display-p3(stroke, $neon-harlequin);
+  @include display-p3(stroke, $color-neon-harlequin);
   stroke-dasharray: 0.001 226.194624;
   stroke-dashoffset: -169.645968;
   animation-duration: 2000ms;
