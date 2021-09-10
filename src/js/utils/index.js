@@ -1,7 +1,9 @@
 import BEM from './bem';
+import toPanelStyles from './to-panel-styles';
 
 const utils = {
   BEM,
+  toPanelStyles,
 };
 
-export { BEM, utils as default };
+export { BEM, toPanelStyles, utils as default };

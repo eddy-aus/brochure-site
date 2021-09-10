@@ -1,0 +1,23 @@
+@use "sass:math";
+
+@import '../utils/tokens';
+@import './remove-unit';
+
+@function to-rem($values...) {
+  $converted-values: ();
+
+  @each $value in $values {
+    $number: remove-unit($value);
+
+    @if $number == 0 {
+      $converted-values: append($converted-values, $number);
+    } @else {
+      $converted-values: append(
+        $converted-values,
+        #{math.div($number, remove-unit($font-size-default))}rem
+      );
+    }
+  }
+
+  @return $converted-values;
+}

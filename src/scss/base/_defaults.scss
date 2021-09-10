@@ -1,12 +1,14 @@
 @import '../utils/tokens';
+@import '../functions/to-rem';
+@import '../mixins/breakpoint';
 @import '../mixins/center';
 @import '../mixins/display-p3';
 
 body {
   height: 100vh;
   width: 100vw;
-  @include display-p3(background-color, $nero);
-  @include display-p3(color, $snow);
+  @include display-p3(background-color, $color-gray-10);
+  @include display-p3(color, $color-gray-0);
   font-family: $font-family-system;
 
   // These rules improve font antialiasing on Mac OS.
@@ -22,8 +24,18 @@ body {
 }
 
 iframe {
+  position: absolute;
+  top: to-rem(84px);
+  left: 0;
+  height: calc(100vh - #{to-rem(84px)});
   width: 100vw;
-  margin-top: 100px;
+}
+
+@include breakpoint(m) {
+  iframe {
+    top: to-rem(124px);
+    height: calc(100vh - #{to-rem(124px)});
+  }
 }
 
 .#{$ns}-app {
