@@ -1,18 +1,27 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import Context from '../components/context';
-import { BEM, toPanelStyles } from '../utils';
-import { namespace as ns } from '../../config';
+import { BEM, toPanelStyles, useEventListenter } from '../utils';
 
 const pages = ['home', 'contact'];
 const { block, element } = BEM('nav');
 
 const Nav = () => {
-  const { isPageMounted } = useContext(Context);
+  const { isReady, setIsReady } = useContext(Context);
   const history = useHistory();
   const linkRefs = useRef([]);
   const [panelStyles, setPanelStyles] = useState();
-  const classNames = isPageMounted ? block() + ' mounted' : block();
+  const classNames = block() + (isReady ? ' ready' : '');
+
+  const foo = () => {
+    const activeLink = linkRefs.current.findIndex((link) =>
+      link.className.includes('active'),
+    );
+    const linkIndex = activeLink !== -1 ? activeLink : 0;
+    const styles = toPanelStyles(linkIndex, linkRefs);
+
+    setPanelStyles(styles);
+  };
 
   const handleClick = (linkIndex) => {
     const styles = toPanelStyles(linkIndex, linkRefs);
@@ -21,27 +30,20 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    const activeLink = linkRefs.current.findIndex((link) =>
-      link.className.includes(ns + '-active'),
-    );
-    const linkIndex = activeLink !== -1 ? activeLink : 0;
-    const styles = toPanelStyles(linkIndex, linkRefs);
+    foo();
+  }, [history]);
 
-    setPanelStyles(styles);
-  }, []);
-
-  console.log(history);
+  useEventListenter('popstate', foo);
 
   return (
     <nav className={classNames}>
       <div className={element('menu')}>
-        {pages.map((page, i) => (
+        {pages.map((page, index) => (
           <div className={element('item')} key={page}>
             <NavLink
-              activeClassName={ns + '-active'}
               className={element('link')}
-              onClick={() => handleClick(i)}
-              innerRef={(linkRef) => (linkRefs.current[i] = linkRef)}
+              onClick={() => handleClick(index)}
+              innerRef={(linkRef) => (linkRefs.current[index] = linkRef)}
               to={'/' + page.toKebabCase()}
             >
               {page.toTitleCase()}

@@ -1,13 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Context from '../components/context';
 
 const Contact = () => {
-  const { isPageMounted } = useContext(Context);
-  const classNames = `eddy-heading${isPageMounted ? ' mounted' : ''}`;
+  const { setIsReady } = useContext(Context);
+
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
 
   return (
     <>
-      <h1 className={classNames}>Contact</h1>
       {/* <iframe
         allowtransparency="true"
         frameBorder="0"

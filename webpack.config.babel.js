@@ -1,5 +1,5 @@
 import 'on-the-case';
-// import CnameWebpackPlugin from 'cname-webpack-plugin';
+import CnameWebpackPlugin from 'cname-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
@@ -37,11 +37,11 @@ const commonWebpackConfig = {
     ],
   },
   plugins: [
-    // new CnameWebpackPlugin({
-    //   domain: 'www.example.com',
-    // }),
+    new CnameWebpackPlugin({
+      domain: 'www.eddy.com.au',
+    }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.join(__dirname, './src/public'), to: '.' }],
+      patterns: [{ from: path.join(__dirname, './src/static'), to: '.' }],
     }),
     ...pages.map((page) => {
       const dirname = 'dirname' in page ? page.dirname : './';
@@ -75,12 +75,12 @@ export default (env) => {
       ...commonWebpackConfig,
       devServer: {
         port: 3000,
-        static: path.join(__dirname, './dist'),
+        static: ['src/static'],
       },
       mode: 'development',
       output: {
         filename: 'js/app.js',
-        // publicPath: 'http://localhost:3000',
+        publicPath: '/',
       },
     };
   }
@@ -90,8 +90,7 @@ export default (env) => {
     mode: 'production',
     output: {
       filename: 'js/app.js',
-      // Update with CNAME
-      publicPath: '.',
+      publicPath: 'https://www.eddy.com.au',
     },
   };
 };

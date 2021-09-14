@@ -1,10 +1,16 @@
 const pages = [
   {
-    title: 'welcome',
+    title: 'home',
   },
   {
     filename: '404.html',
-    title: 'uh-oh!',
+    title: '404',
+  },
+  {
+    get dirname() {
+      return './' + this.title + '/';
+    },
+    title: 'home',
   },
   {
     get dirname() {

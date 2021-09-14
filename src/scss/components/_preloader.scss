@@ -2,7 +2,7 @@
 @import '../mixins/center';
 @import '../mixins/display-p3';
 
-.eddy-spinner {
+.#{$ns}-preloader {
   opacity: 0;
   @include center();
   height: 5rem;
@@ -10,30 +10,30 @@
   transition: opacity 300ms ease;
 }
 
-.eddy-spinner.mounted {
+.#{$ns}-preloader.ready {
   opacity: 1;
 }
 
-.eddy-spinner__ring {
+.#{$ns}-preloader__ring {
   fill: none;
   stroke-linecap: round;
   stroke-width: 0.5rem;
 }
 
-.eddy-spinner__ring:nth-of-type(1) {
+.#{$ns}-preloader__ring:nth-of-type(1) {
   @include display-p3(stroke, $color-gray-8);
 }
 
-.eddy-spinner__ring:nth-of-type(2) {
-  @include display-p3(stroke, $color-neon-harlequin);
+.#{$ns}-preloader__ring:nth-of-type(2) {
+  @include display-p3(stroke, $color-brand);
   stroke-dasharray: 0.001 226.194624;
   stroke-dashoffset: -169.645968;
   animation-duration: 2000ms;
-  animation-name: spinning;
+  animation-name: loading;
   animation-iteration-count: infinite;
 }
 
-@keyframes spinning {
+@keyframes loading {
   0% {
     stroke-dasharray: 0 0 0.001 226.194624;
   }

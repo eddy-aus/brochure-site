@@ -1,0 +1,6 @@
+@import '../utils/tokens';
+@import '../mixins/display-p3';
+
+.#{$ns}-punctuation {
+  @include display-p3(color, $color-brand);
+}

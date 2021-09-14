@@ -1,5 +1,0 @@
-@mixin has-mouse() {
-  @media (any-hover: hover) {
-    @content;
-  }
-}
