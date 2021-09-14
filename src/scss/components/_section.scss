@@ -1,0 +1,16 @@
+@import '../utils/tokens';
+@import '../functions/to-rem';
+@import '../mixins/center';
+@import '../mixins/display-p3';
+
+.#{$ns}-section {
+  box-sizing: border-box;
+  min-height: calc(
+    100vh - (env(safe-area-inset-top) + env(safe-area-inset-bottom))
+  );
+  padding-right: to-rem(40px);
+  padding-left: to-rem(40px);
+}
+
+.#{$ns}-section__heading {
+}

@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import Context from './components/context';
 import Preloader from './components/preloader';
-import Nav from './layouts/nav';
+import Nav from './components/nav';
 import Contact from './pages/contact';
 import Home from './pages/home';
 import { BEM } from './utils';
@@ -19,32 +19,29 @@ const { block } = BEM('app');
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isPageMounted, setIsPageMounted] = useState(false);
-  const [isPreloaderMounted, setIsPreloaderMounted] = useState(false);
+  const [isReady, setIsReady] = useState(true);
 
   useEffect(() => {
-    if (isLoading) {
-      setIsPreloaderMounted(true);
+    if (!isLoading) return;
 
-      // Mocked response time.
-      let timer = setTimeout(() => {
-        setIsPreloaderMounted(false);
-      }, 3000);
+    setIsReady(true);
 
-      return () => {
-        clearTimeout(timer);
-      };
-    } else {
-      setIsPageMounted(true);
-    }
+    // Mocked response time.
+    let timer = setTimeout(() => {
+      setIsReady(false);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [isLoading]);
 
   return (
     <Context.Provider
       value={{
-        isPageMounted,
-        isPreloaderMounted,
+        isReady,
         setIsLoading,
+        setIsReady,
       }}
     >
       {isLoading ? (

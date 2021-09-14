@@ -1,18 +1,16 @@
 import { useContext } from 'react';
 import Context from './context';
+import { BEM } from '../utils';
+
+const { block, element } = BEM('preloader');
 
 const Preloader = () => {
-  const { isPreloaderMounted, setIsLoading } = useContext(Context);
+  const { isReady, setIsLoading } = useContext(Context);
+  const classNames = block() + (isReady ? ' ready' : '');
 
   const handleTransitionEnd = () => {
-    if (!isPreloaderMounted) {
-      setIsLoading(false);
-    }
+    if (!isReady) setIsLoading(false);
   };
-
-  const classNames = isPreloaderMounted
-    ? 'eddy-spinner mounted'
-    : 'eddy-spinner';
 
   return (
     <svg
@@ -23,32 +21,10 @@ const Preloader = () => {
       viewBox="0 0 80 80"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle className="eddy-spinner__ring" cx="40" cy="40" r="36" />
-      <circle className="eddy-spinner__ring" cx="40" cy="40" r="36" />
+      <circle className={element('ring')} cx="40" cy="40" r="36" />
+      <circle className={element('ring')} cx="40" cy="40" r="36" />
     </svg>
   );
 };
 
 export { Preloader as default };
-
-// < !DOCTYPE html >
-//   <html lang="en-AU">
-//     <head>
-//       <meta charset="UTF-8" />
-//       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-//       <title>Spinner Demo</title>
-//       <style>
-
-//       /* End spinner styles */
-//       </style>
-//     </head>
-//     <body>
-//       <main class="demo__outer">
-//         <div class="demo__inner">
-//           <!-- Start spinner markup -->
-
-//           <!-- End spinner markup -->
-//         </div>
-//       </main>
-//     </body>
-//   </html>
