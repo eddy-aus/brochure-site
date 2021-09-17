@@ -3,57 +3,139 @@
 @import '../mixins/breakpoint';
 @import '../mixins/center';
 @import '../mixins/display-p3';
+@import '../mixins/has-touch';
 
-body {
-  @include display-p3(background-color, $color-gray-10);
-  @include display-p3(color, $color-gray-0);
-  font-family: $font-family-system;
-
-  // These rules improve font antialiasing on Mac OS.
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  // This rule improves text rendering.
-  text-rendering: optimizeLegibility;
-
-  // This rule removes the overlay that appears on elements when tapped in
-  // Mobile Safari.
-  -webkit-tap-highlight-color: transparent;
+// The background-color property of the ::-moz-selection rule gives control of the
+// browser window's selection color in Firefox.
+::-moz-selection {
+  @include display-p3(background-color, $color-brand);
+  @include display-p3(color, $color-gray-10);
 }
 
-// Validate
+// The background-color property of the ::selection rule gives control of the
+// browser window's selection color.
 ::selection {
   @include display-p3(background-color, $color-brand);
   @include display-p3(color, $color-gray-10);
 }
 
+// These properties hide scrollbars for IE, Edge and Firefox.
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+// This rule hides scrollbars in Chrome, Safari and Opera.
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  @include display-p3(background-color, $color-gray-10);
+  @include display-p3(color, $color-gray-0);
+  font-family: $font-family-body-copy;
+
+  // These properties improve font antialiasing on Mac OS.
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // This property improves text rendering.
+  text-rendering: optimizeLegibility;
+
+  // This property removes the overlay that appears on elements when tapped in
+  // Mobile Safari.
+  -webkit-tap-highlight-color: transparent;
+}
+
+main {
+  padding-top: to-rem(72px);
+}
+
 iframe {
-  position: absolute;
-  top: to-rem(84px);
-  left: 0;
-  height: calc(100vh - #{to-rem(84px)});
+  // This ensures the iframe can sit in front of any preloader.
+  position: relative;
+
+  height: calc(100vh - (#{to-rem(72px)} + #{to-rem(24px)}));
   width: 100vw;
+}
+
+.#{$ns}-banner {
+  position: relative;
+  padding-top: 75%;
+  background-position: center;
+  background-size: cover;
+}
+
+.#{$ns}-banner__logo {
+  @include center();
+  height: to-rem(64px);
+  width: auto;
+  @include display-p3(fill, $color-gray-0);
+}
+
+@include has-touch() {
+  main {
+    padding-top: 0;
+    padding-bottom: to-rem(84px);
+  }
+}
+
+@include breakpoint(xs) {
+  iframe {
+    height: calc(100vh - (#{to-rem(72px)} + #{to-rem(40px)}));
+  }
+}
+
+@include breakpoint(s) {
+  iframe {
+    height: calc(100vh - (#{to-rem(72px)} + #{to-rem(64px)}));
+  }
+
+  .#{$ns}-banner {
+    padding-top: 56.25%;
+  }
+
+  .#{$ns}-banner__logo {
+    height: to-rem(80px);
+  }
 }
 
 @include breakpoint(m) {
   iframe {
-    top: to-rem(124px);
-    height: calc(100vh - #{to-rem(124px)});
+    height: calc(100vh - (#{to-rem(72px)} + #{to-rem(104px)}));
+  }
+
+  .#{$ns}-banner__logo {
+    height: to-rem(96px);
+  }
+
+  @include has-touch() {
+    main {
+      padding-top: to-rem(72px);
+    }
   }
 }
 
-.#{$ns}-heading {
-  opacity: 0;
-  @include center();
-  top: 60%;
-  font-size: 3.5rem;
-  font-weight: 700;
-  text-align: center;
-  white-space: nowrap;
-  transition: all 300ms cubic-bezier(0.6, 0, 0.5, 1.4);
+@include breakpoint(l) {
+  main {
+    padding-top: to-rem(96px);
+  }
+
+  iframe {
+    height: calc(100vh - (#{to-rem(96px)} + #{to-rem(104px)}));
+  }
+
+  .#{$ns}-banner {
+    padding-top: to-rem(576px);
+  }
+
+  .#{$ns}-banner__logo {
+    height: to-rem(112px);
+  }
 }
 
-.#{$ns}-heading.mounted {
-  opacity: 1;
-  top: 50%;
+@include breakpoint(xl) {
+  .#{$ns}-banner__logo {
+    height: to-rem(128px);
+  }
 }

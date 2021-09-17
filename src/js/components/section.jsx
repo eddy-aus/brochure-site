@@ -12,11 +12,13 @@ const ImageSection = (props) => {
       className={block() + ' ' + modifier('image')}
       style={{ backgroundImage: `url('${image.trim()}')` }}
     >
-      <h2 className={element('heading')}>
-        {heading.toTitleCase()}
-        <Punc>{headingPunctuation}</Punc>
-      </h2>
-      <div className={element('blurb')}>{children}</div>
+      <div className={element('inner')}>
+        <h2 className={element('heading')}>
+          {heading.toTitleCase()}
+          <Punc>{headingPunctuation}</Punc>
+        </h2>
+        <div className={element('blurb')}>{children}</div>
+      </div>
     </section>
   );
 };
@@ -26,11 +28,13 @@ const SolidSection = (props) => {
 
   return (
     <section className={block()}>
-      <h2 className={element('heading')}>
-        {heading.toTitleCase()}
-        <Punc>{headingPunctuation}</Punc>
-      </h2>
-      <div className={element('blurb')}>{children}</div>
+      <div className={element('inner')}>
+        <h2 className={element('heading')}>
+          {heading.toTitleCase()}
+          <Punc>{headingPunctuation}</Punc>
+        </h2>
+        <div className={element('blurb')}>{children}</div>
+      </div>
       <div
         className={element('image')}
         style={{ backgroundImage: `url('${image.trim()}')` }}

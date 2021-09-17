@@ -5,8 +5,8 @@
 .#{$ns}-preloader {
   opacity: 0;
   @include center();
-  height: 5rem;
-  width: 5rem;
+  height: 2.5rem;
+  width: 2.5rem;
   transition: opacity 300ms ease;
 }
 

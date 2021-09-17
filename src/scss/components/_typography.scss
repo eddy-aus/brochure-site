@@ -1,6 +1,84 @@
 @import '../utils/tokens';
 @import '../mixins/display-p3';
 
+.#{$ns}-h2 {
+  box-sizing: border-box;
+  display: block;
+  padding-right: to-rem(24px);
+  padding-left: to-rem(24px);
+  margin-top: to-rem(24px);
+  margin-bottom: to-rem(16px);
+  font-family: $font-family-headings;
+  font-size: $font-size-xxxxl;
+  font-weight: 500;
+  line-height: to-rem(48px);
+}
+
+.#{$ns}-link {
+  padding: to-rem(8px);
+  margin-left: to-rem(-8px);
+  @include display-p3(color, $color-gray-0);
+  font-weight: $font-weight-regular;
+  @include display-p3(text-decoration-color, $color-brand);
+  text-decoration-thickness: to-rem(2px);
+  text-underline-offset: to-rem(4px);
+}
+
+.#{$ns}-link:focus {
+  @include display-p3(outline-color, $color-focus-outline);
+  outline-style: solid;
+  outline-width: to-rem(3px);
+}
+
 .#{$ns}-punctuation {
   @include display-p3(color, $color-brand);
+}
+
+@include breakpoint(xs) {
+  .#{$ns}-h2 {
+    padding-right: to-rem(40px);
+    padding-left: to-rem(40px);
+    margin-top: to-rem(40px);
+    margin-bottom: to-rem(24px);
+    font-size: $font-size-xxxxxl;
+  }
+}
+
+@include breakpoint(s) {
+  .#{$ns}-h2 {
+    padding-right: to-rem(64px);
+    padding-left: to-rem(64px);
+    margin-top: to-rem(64px);
+    margin-bottom: to-rem(28px);
+    font-size: $font-size-xxxxxxl;
+    line-height: to-rem(56px);
+  }
+}
+
+@include breakpoint(m) {
+  .#{$ns}-h2 {
+    padding-right: to-rem(104px);
+    padding-left: to-rem(104px);
+    margin-top: to-rem(104px);
+    font-size: $font-size-xxxxxxxl;
+    line-height: to-rem(64px);
+  }
+}
+
+@include breakpoint(l) {
+  .#{$ns}-h2 {
+    margin-bottom: to-rem(32px);
+    font-size: $font-size-xxxxxxxxl;
+    line-height: to-rem(72px);
+  }
+}
+
+@include breakpoint(xl) {
+  .#{$ns}-h2 {
+    max-width: to-rem(1448px);
+    margin-right: auto;
+    margin-left: auto;
+    font-size: $font-size-xxxxxxxxxl;
+    line-height: to-rem(80px);
+  }
 }
