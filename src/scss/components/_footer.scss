@@ -1,0 +1,32 @@
+@import '../utils/tokens';
+@import '../functions/to-rem';
+@import '../mixins/breakpoint';
+@import '../mixins/center';
+@import '../mixins/display-p3';
+@import '../mixins/has-retina';
+
+.#{$ns}-footer {
+  position: relative;
+  height: to-rem(72px);
+  @include display-p3(background-color, $color-cod-gray);
+}
+
+.#{$ns}-footer__statement {
+  @include center();
+  @include display-p3(color, $color-gray-4);
+  font-size: $font-size-xxxxs;
+  font-weight: $font-weight-regular;
+  line-height: to-rem(20px);
+}
+
+@include has-retina() {
+  .#{$ns}-footer__statement > * {
+    font-weight: $font-weight-light;
+  }
+}
+
+@include breakpoint(l) {
+  .#{$ns}-footer__statement {
+    font-size: $font-size-xxxs;
+  }
+}

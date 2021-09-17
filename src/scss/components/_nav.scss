@@ -1,32 +1,40 @@
 @import '../utils/tokens';
 @import '../functions/to-rem';
+@import '../mixins/breakpoint';
 @import '../mixins/center';
 @import '../mixins/display-p3';
 @import '../mixins/has-touch';
 
 .#{$ns}-nav {
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
   box-sizing: border-box;
-  height: to-rem(84px);
+  height: to-rem(72px);
   width: 100vw;
   @include display-p3(border-color, $color-gray-8);
   border-style: solid;
   border-bottom-width: to-rem(1px);
+  @include display-p3(background-color, $color-gray-10);
+}
+
+.#{$ns}-nav__logo {
+  @include center(y);
+  left: calc(#{to-rem(24px)} + env(safe-area-inset-left));
+  @include display-p3(fill, $color-gray-0);
+  height: to-rem(24px);
+  width: auto;
 }
 
 .#{$ns}-nav__menu {
   @include center(y);
-  right: to-rem(16px);
-  height: to-rem(44px);
+  right: calc(#{to-rem(16px)} + env(safe-area-inset-right));
+  height: to-rem(40px);
   padding-left: to-rem(4px);
   padding-right: to-rem(4px);
   border-radius: to-rem(8px);
-
-  // Amend color later
-  @include display-p3(background-color, #0a0a0a);
-
+  @include display-p3(background-color, $color-cod-gray);
   cursor: pointer;
 }
 
@@ -35,10 +43,9 @@
   position: absolute;
   top: to-rem(-2px);
   left: to-rem(-2px);
-  display: inline;
   height: calc(100% + #{to-rem(4px)});
   width: calc(100% + #{to-rem(4px)});
-  border-radius: to-rem(8px);
+  border-radius: to-rem(10px);
   box-shadow: 0 0 0 0 rgba($color-focus-outline, 0);
   box-shadow: 0 0 0 0 to-display-p3(rgba($color-focus-outline, 0));
   transition: box-shadow 250ms ease;
@@ -47,6 +54,54 @@
 .#{$ns}-nav__menu:focus-within:before {
   box-shadow: 0 0 0 to-rem(3px) $color-focus-outline;
   box-shadow: 0 0 0 to-rem(3px) to-display-p3($color-focus-outline);
+}
+
+.#{$ns}-nav__item {
+  float: left;
+}
+
+.#{$ns}-nav__link {
+  z-index: 1;
+  position: relative;
+  display: block;
+  padding-right: to-rem(12px);
+  padding-left: to-rem(12px);
+  outline: none;
+  @include display-p3(color, $color-gray-3);
+  font-size: $font-size-xxxs;
+  font-weight: $font-weight-medium;
+  line-height: to-rem(40px);
+  text-decoration: none;
+  transition: color 250ms ease;
+  user-select: none;
+}
+
+.#{$ns}-nav__link.active {
+  @include display-p3(color, $color-gray-0);
+}
+
+.#{$ns}-nav__panel {
+  position: absolute;
+  top: to-rem(4px);
+  transform: translateX(-50%);
+  height: to-rem(32px);
+  border-radius: to-rem(4px);
+  box-shadow: 0 to-rem(4px) to-rem(8px) 0 rgba(0, 0, 0, 0.5);
+  @include display-p3(background-color, $color-gray-9);
+
+  // Convert this cubic-bezier() to 'ease' if nav links exceed 2.
+  transition: left 375ms cubic-bezier(0.6, 0, 0.5, 1.4), width 375ms ease,
+    background-color 250ms ease;
+
+  pointer-events: none;
+}
+
+.#{$ns}-nav__item:hover ~ .#{$ns}-nav__panel {
+  @include display-p3(background-color, $color-gray-8);
+}
+
+.#{$ns}-nav__item:focus-within ~ .#{$ns}-nav__panel {
+  @include display-p3(background-color, $color-gray-8);
 }
 
 @include has-touch() {
@@ -63,46 +118,52 @@
   }
 }
 
-.#{$ns}-nav__item {
-  float: left;
+@include breakpoint(m) {
+  @include has-touch() {
+    .#{$ns}-nav {
+      top: 0;
+      bottom: unset;
+      border-top-width: 0;
+      border-bottom-width: to-rem(1px);
+    }
+
+    .#{$ns}-nav__menu {
+      @include center(y);
+      right: calc(#{to-rem(16px)} + env(safe-area-inset-right));
+      left: unset;
+    }
+  }
 }
 
-.#{$ns}-nav__item:first-of-type {
-  margin-right: to-rem(4px);
-}
+@include breakpoint(l) {
+  .#{$ns}-nav {
+    height: to-rem(96px);
+  }
 
-.#{$ns}-nav__link {
-  z-index: 1;
-  position: relative;
-  display: block;
-  padding-right: to-rem(12px);
-  padding-left: to-rem(12px);
-  outline: none;
-  @include display-p3(color, $color-gray-3);
-  font-size: $font-size-xxs;
-  font-weight: $font-weight-medium;
-  line-height: to-rem(44px);
-  text-decoration: none;
-  transition: color 250ms ease;
-  user-select: none;
-}
+  .#{$ns}-nav__logo {
+    left: calc(#{to-rem(32px)} + env(safe-area-inset-left));
+    height: to-rem(32px);
+  }
 
-.#{$ns}-nav__link.active {
-  @include display-p3(color, $color-gray-0);
-}
+  .#{$ns}-nav__menu {
+    right: calc(#{to-rem(24px)} + env(safe-area-inset-right));
+    height: to-rem(48px);
+  }
 
-.#{$ns}-nav__panel {
-  position: absolute;
-  top: to-rem(4px);
-  transform: translateX(-50%);
-  height: to-rem(36px);
-  width: 36px;
-  border-radius: to-rem(4px);
-  box-shadow: 0 to-rem(4px) to-rem(8px) 0 rgba(0, 0, 0, 0.5);
-  @include display-p3(background-color, $color-gray-9);
+  .#{$ns}-nav__link {
+    padding-right: to-rem(16px);
+    padding-left: to-rem(16px);
+    font-size: $font-size-xxs;
+    line-height: to-rem(48px);
+  }
 
-  // Convert this cubic-bezier() to 'ease' if nav links exceed 2.
-  transition: left 375ms cubic-bezier(0.6, 0, 0.5, 1.4), width 375ms ease;
+  .#{$ns}-nav__panel {
+    height: to-rem(40px);
+  }
 
-  pointer-events: none;
+  @include has-touch() {
+    .#{$ns}-nav__menu {
+      right: to-rem(24px);
+    }
+  }
 }

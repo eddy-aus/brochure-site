@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import Context from '../components/context';
+import Logo from '../components/logo';
 import { BEM, toPanelStyles, useEventListenter } from '../utils';
 
 const pages = ['home', 'contact'];
@@ -13,30 +14,32 @@ const Nav = () => {
   const [panelStyles, setPanelStyles] = useState();
   const classNames = block() + (isReady ? ' ready' : '');
 
-  const foo = () => {
-    const activeLink = linkRefs.current.findIndex((link) =>
-      link.className.includes('active'),
-    );
-    const linkIndex = activeLink !== -1 ? activeLink : 0;
-    const styles = toPanelStyles(linkIndex, linkRefs);
-
-    setPanelStyles(styles);
-  };
-
   const handleClick = (linkIndex) => {
+    if (typeof linkIndex !== 'number') {
+      const activeLink = linkRefs.current.findIndex((link) =>
+        link.className.includes('active'),
+      );
+
+      linkIndex = activeLink !== -1 ? activeLink : 0;
+    }
+
     const styles = toPanelStyles(linkIndex, linkRefs);
 
     setPanelStyles(styles);
   };
 
   useEffect(() => {
-    foo();
+    handleClick();
   }, [history]);
 
-  useEventListenter('popstate', foo);
+  useEventListenter('popstate', handleClick);
+  useEventListenter('resize', handleClick);
 
   return (
     <nav className={classNames}>
+      <Link to="/home" onClick={() => handleClick(0)}>
+        <Logo className={element('logo')} />
+      </Link>
       <div className={element('menu')}>
         {pages.map((page, index) => (
           <div className={element('item')} key={page}>

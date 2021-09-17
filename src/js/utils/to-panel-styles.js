@@ -5,7 +5,7 @@ const toPanelStyles = (linkIndex, linkRefs) => {
     if (i === linkIndex) {
       left += linkRefs.current[i].offsetWidth / 2;
     } else {
-      left += linkRefs.current[i].offsetWidth + 4;
+      left += linkRefs.current[i].offsetWidth;
     }
   }
 

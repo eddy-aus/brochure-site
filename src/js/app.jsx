@@ -29,7 +29,7 @@ const App = () => {
     // Mocked response time.
     let timer = setTimeout(() => {
       setIsReady(false);
-    }, 3000);
+    }, 2000);
 
     return () => {
       clearTimeout(timer);
