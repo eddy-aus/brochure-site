@@ -54,7 +54,6 @@ const commonWebpackConfig = {
         template: path.join(__dirname, './src/html/index.html'),
         templateParameters: {
           namespace,
-          title: pageTitle + ' | Eddy Australia',
         },
       });
     }),

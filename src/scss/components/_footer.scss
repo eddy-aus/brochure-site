@@ -17,6 +17,7 @@
   font-size: $font-size-xxxxs;
   font-weight: $font-weight-regular;
   line-height: to-rem(20px);
+  user-select: none;
 }
 
 @include has-retina() {

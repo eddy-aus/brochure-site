@@ -1,61 +1,78 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useHistory } from 'react-router-dom';
-import Context from '../components/context';
+import { useEffect, useRef, useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import Logo from '../components/logo';
-import { BEM, toPanelStyles, useEventListenter } from '../utils';
+import { BEM, useEventListenter } from '../utils';
 
 const pages = ['home', 'contact'];
 const { block, element } = BEM('nav');
 
 const Nav = () => {
-  const { isReady, setIsReady } = useContext(Context);
-  const history = useHistory();
   const linkRefs = useRef([]);
+  const location = useLocation();
   const [panelStyles, setPanelStyles] = useState();
-  const classNames = block() + (isReady ? ' ready' : '');
 
-  const handleClick = (linkIndex) => {
-    if (typeof linkIndex !== 'number') {
-      const activeLink = linkRefs.current.findIndex((link) =>
-        link.className.includes('active'),
-      );
+  const updatePanelStyles = () => {
+    const linkIndex = linkRefs.current.findIndex((link) =>
+      link.className.includes('active'),
+    );
 
-      linkIndex = activeLink !== -1 ? activeLink : 0;
+    if (linkIndex === -1) {
+      return;
     }
 
-    const styles = toPanelStyles(linkIndex, linkRefs);
+    let left = 4;
 
-    setPanelStyles(styles);
+    for (let i = 0; i <= linkIndex; i++) {
+      if (i === linkIndex) {
+        left += linkRefs.current[i].offsetWidth / 2;
+      } else {
+        left += linkRefs.current[i].offsetWidth;
+      }
+    }
+
+    setPanelStyles({
+      left,
+      width: linkRefs.current[linkIndex].offsetWidth,
+    });
   };
 
   useEffect(() => {
-    handleClick();
-  }, [history]);
+    updatePanelStyles();
+  }, [location.pathname]);
 
-  useEventListenter('popstate', handleClick);
-  useEventListenter('resize', handleClick);
+  const handleClick = () => {
+    updatePanelStyles();
+  };
+
+  useEventListenter('resize', updatePanelStyles);
 
   return (
-    <nav className={classNames}>
-      <Link to="/home" onClick={() => handleClick(0)}>
-        <Logo className={element('logo')} />
-      </Link>
-      <div className={element('menu')}>
-        {pages.map((page, index) => (
-          <div className={element('item')} key={page}>
-            <NavLink
-              className={element('link')}
-              onClick={() => handleClick(index)}
-              innerRef={(linkRef) => (linkRefs.current[index] = linkRef)}
-              to={'/' + page.toKebabCase()}
-            >
-              {page.toTitleCase()}
-            </NavLink>
-          </div>
-        ))}
-        <div className={element('panel')} style={panelStyles} />
-      </div>
-    </nav>
+    <>
+      <nav className={block()}>
+        <Link
+          className={element('logo-outer')}
+          onClick={handleClick}
+          to="/home"
+        >
+          <Logo className={element('logo')} />
+        </Link>
+        <div className={element('menu')}>
+          {pages.map((page, index) => (
+            <div className={element('item')} key={page}>
+              <NavLink
+                className={element('link')}
+                onClick={handleClick}
+                innerRef={(linkRef) => (linkRefs.current[index] = linkRef)}
+                to={'/' + page.toKebabCase()}
+              >
+                {page.toTitleCase()}
+              </NavLink>
+            </div>
+          ))}
+          <div className={element('panel')} style={panelStyles} />
+        </div>
+      </nav>
+    </>
   );
 };
 

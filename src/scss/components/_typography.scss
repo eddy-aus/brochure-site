@@ -2,7 +2,6 @@
 @import '../mixins/display-p3';
 
 .#{$ns}-h2 {
-  box-sizing: border-box;
   display: block;
   padding-right: to-rem(24px);
   padding-left: to-rem(24px);

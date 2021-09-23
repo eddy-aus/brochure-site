@@ -1,4 +1,5 @@
 import { useContext, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import Context from '../components/context';
 import Footer from '../components/footer';
 import Preloader from '../components/preloader';
@@ -14,6 +15,9 @@ const Contact = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Contact | Eddy Australia</title>
+      </Helmet>
       <main>
         <h1
           style={{

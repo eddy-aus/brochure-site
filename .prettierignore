@@ -17,6 +17,7 @@ dist/
 *.jpg
 *.jpeg
 *.png
+*.svg
 
 # License
 LICENSE
