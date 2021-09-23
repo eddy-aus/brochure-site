@@ -19,12 +19,38 @@
   @include display-p3(background-color, $color-gray-10);
 }
 
-.#{$ns}-nav__logo {
+.#{$ns}-nav__logo-outer {
   @include center(y);
   left: calc(#{to-rem(24px)} + env(safe-area-inset-left));
-  @include display-p3(fill, $color-gray-0);
+  box-sizing: border-box;
+  height: to-rem(48px);
+  padding: to-rem(12px);
+  outline: none;
+}
+
+.#{$ns}-nav__logo-outer::before {
+  content: '';
+  position: absolute;
+  top: to-rem(-2px);
+  left: to-rem(-2px);
+  height: calc(100% + #{to-rem(4px)});
+  width: calc(100% + #{to-rem(4px)});
+  border-radius: to-rem(10px);
+  box-shadow: 0 0 0 0 rgba($color-focus-outline, 0);
+  box-shadow: 0 0 0 0 to-display-p3(rgba($color-focus-outline, 0));
+  transition: box-shadow 250ms ease;
+}
+
+.#{$ns}-nav__logo-outer:focus::before {
+  box-shadow: 0 0 0 to-rem(3px) $color-focus-outline;
+  box-shadow: 0 0 0 to-rem(3px) to-display-p3($color-focus-outline);
+}
+
+.#{$ns}-nav__logo {
   height: to-rem(24px);
   width: auto;
+  @include display-p3(fill, $color-gray-0);
+  pointer-events: none;
 }
 
 .#{$ns}-nav__menu {
@@ -51,7 +77,7 @@
   transition: box-shadow 250ms ease;
 }
 
-.#{$ns}-nav__menu:focus-within:before {
+.#{$ns}-nav__menu:focus-within::before {
   box-shadow: 0 0 0 to-rem(3px) $color-focus-outline;
   box-shadow: 0 0 0 to-rem(3px) to-display-p3($color-focus-outline);
 }
@@ -140,8 +166,13 @@
     height: to-rem(96px);
   }
 
-  .#{$ns}-nav__logo {
+  .#{$ns}-nav__logo-outer {
     left: calc(#{to-rem(32px)} + env(safe-area-inset-left));
+    padding-top: to-rem(8px);
+    padding-bottom: to-rem(8px);
+  }
+
+  .#{$ns}-nav__logo {
     height: to-rem(32px);
   }
 

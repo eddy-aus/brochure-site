@@ -19,8 +19,11 @@
   @include display-p3(color, $color-gray-10);
 }
 
-// These properties hide scrollbars for IE, Edge and Firefox.
 * {
+  // This property modifies the box-model of all elements.
+  box-sizing: border-box;
+
+  // These properties hide scrollbars for IE, Edge and Firefox.
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
