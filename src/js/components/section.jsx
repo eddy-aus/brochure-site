@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { BEM, useEventListenter } from '../utils';
 import Punc from './punc';
-import { BEM } from '../utils';
 
 const { block, element, modifier } = BEM('section');
 
 const PrimarySection = (props) => {
-  const { children, heading, headingPunctuation, image, style } = props;
+  const { children, heading, headingPunctuation, image } = props;
 
   return (
-    <section className={block()} style={style}>
+    <section className={block()}>
       <div className={element('inner')}>
         <h2 className={element('heading')}>
           {heading.toTitleCase()}
@@ -41,7 +42,7 @@ const PrimarySection = (props) => {
             />
             <image
               className={`${element('image')} ${modifier('s', 'image')}`}
-              height="auto"
+              height="100%"
               href={image.trim() + '-320.png'}
               width="106%"
               x="-3%"
@@ -52,7 +53,7 @@ const PrimarySection = (props) => {
                 's',
                 'image',
               )} ${modifier('2x', 'image')}`}
-              height="auto"
+              height="100%"
               href={image.trim() + '-320-@2x.png'}
               width="106%"
               x="-3%"
@@ -60,7 +61,7 @@ const PrimarySection = (props) => {
             />
             <image
               className={`${element('image')} ${modifier('m', 'image')}`}
-              height="auto"
+              height="100%"
               href={image.trim() + '-480.png'}
               width="106%"
               x="-3%"
@@ -71,7 +72,7 @@ const PrimarySection = (props) => {
                 'm',
                 'image',
               )} ${modifier('2x', 'image')}`}
-              height="auto"
+              height="100%"
               href={image.trim() + '-480-@2x.png'}
               width="106%"
               x="-3%"
@@ -79,7 +80,7 @@ const PrimarySection = (props) => {
             />
             <image
               className={`${element('image')} ${modifier('l', 'image')}`}
-              height="auto"
+              height="100%"
               href={image.trim() + '-768.png'}
               width="106%"
               x="-3%"
@@ -90,7 +91,7 @@ const PrimarySection = (props) => {
                 'l',
                 'image',
               )} ${modifier('2x', 'image')}`}
-              height="auto"
+              height="100%"
               href={image.trim() + '-768-@2x.png'}
               width="106%"
               x="-3%"
@@ -119,29 +120,52 @@ const PrimarySection = (props) => {
 };
 
 const SecondarySection = (props) => {
-  const { children, heading, headingPunctuation, style } = props;
+  const { children, heading, headingPunctuation } = props;
 
   return (
-    <section className={`${block()} ${modifier('secondary')}`} style={style}>
-      <h2 className={element('heading')}>
-        {heading.toTitleCase()}
-        <Punc>{headingPunctuation}</Punc>
-      </h2>
-      <div className={element('content')}>{children}</div>
+    <section className={`${block()} ${modifier('secondary')}`}>
+      <div className={element('inner')}>
+        <h2 className={element('heading')}>
+          {heading.toTitleCase()}
+          <Punc>{headingPunctuation}</Punc>
+        </h2>
+        <div className={element('content')}>{children}</div>
+      </div>
     </section>
   );
 };
 
 const TertiarySection = (props) => {
-  const { children, heading, headingPunctuation, style } = props;
+  const { children, heading, headingPunctuation, image } = props;
+  const [imgSrc, setImgSrc] = useState(
+    window.innerWidth > 768 ? image + '-1024-@2x.jpg' : image + '-768-@2x.jpg',
+  );
+
+  const handleResize = () => {
+    if (window.innerWidth > 768) {
+      setImgSrc(image + '-1280-@2x.jpg');
+    } else {
+      setImgSrc(image + '-768-@2x.jpg');
+    }
+  };
+
+  useEventListenter('resize', handleResize);
 
   return (
-    <section className={`${block()} ${modifier('tertiary')}`} style={style}>
-      <h2 className={element('heading')}>
-        {heading.toTitleCase()}
-        <Punc>{headingPunctuation}</Punc>
-      </h2>
-      <div className={element('content')}>{children}</div>
+    <section className={`${block()} ${modifier('tertiary')}`}>
+      <div className={element('inner')}>
+        <h2 className={element('heading')}>
+          {heading.toTitleCase()}
+          <Punc>{headingPunctuation}</Punc>
+        </h2>
+        <div className={element('content')}>{children}</div>
+        <div
+          className={element('image')}
+          style={{
+            backgroundImage: `url(${imgSrc})`,
+          }}
+        />
+      </div>
     </section>
   );
 };
@@ -170,7 +194,6 @@ Section.propTypes = {
   heading: PropTypes.string.isRequired,
   headingPunctuation: PropTypes.oneOf(['.', '?', '!', '...', ',']),
   image: PropTypes.string,
-  style: PropTypes.style,
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
 };
 

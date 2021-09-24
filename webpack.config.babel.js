@@ -32,7 +32,12 @@ const commonWebpackConfig = {
       {
         exclude: /node_modules/,
         test: /\.s[ac]ss$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { url: false } },
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
