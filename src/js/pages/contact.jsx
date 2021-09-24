@@ -16,7 +16,7 @@ const Contact = () => {
   return (
     <>
       <Helmet>
-        <title>Contact | Eddy Australia</title>
+        <title>Contact | eddy Australia</title>
       </Helmet>
       <main>
         <h1

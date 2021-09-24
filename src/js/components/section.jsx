@@ -12,7 +12,7 @@ const PrimarySection = (props) => {
     <section className={block()}>
       <div className={element('inner')}>
         <h2 className={element('heading')}>
-          {heading.toTitleCase()}
+          {heading}
           <Punc>{headingPunctuation}</Punc>
         </h2>
         <div className={element('content')}>{children}</div>
@@ -126,7 +126,7 @@ const SecondarySection = (props) => {
     <section className={`${block()} ${modifier('secondary')}`}>
       <div className={element('inner')}>
         <h2 className={element('heading')}>
-          {heading.toTitleCase()}
+          {heading}
           <Punc>{headingPunctuation}</Punc>
         </h2>
         <div className={element('content')}>{children}</div>
@@ -155,7 +155,7 @@ const TertiarySection = (props) => {
     <section className={`${block()} ${modifier('tertiary')}`}>
       <div className={element('inner')}>
         <h2 className={element('heading')}>
-          {heading.toTitleCase()}
+          {heading}
           <Punc>{headingPunctuation}</Punc>
         </h2>
         <div className={element('content')}>{children}</div>
