@@ -79,7 +79,6 @@ iframe {
 @include has-touch() {
   main {
     padding-top: 0;
-    padding-bottom: to-rem(84px);
   }
 }
 

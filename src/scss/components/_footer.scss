@@ -4,6 +4,7 @@
 @import '../mixins/center';
 @import '../mixins/display-p3';
 @import '../mixins/has-retina';
+@import '../mixins/has-touch';
 
 .#{$ns}-footer {
   position: relative;
@@ -23,6 +24,12 @@
 @include has-retina() {
   .#{$ns}-footer__statement > * {
     font-weight: $font-weight-light;
+  }
+}
+
+@include has-touch() {
+  .#{$ns}-footer {
+    margin-bottom: to-rem(72px);
   }
 }
 
