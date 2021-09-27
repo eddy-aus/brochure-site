@@ -9,7 +9,7 @@ const Footer = (props) => {
   return (
     <footer className={block()}>
       <p className={element('statement')}>
-        © Copyright Eddy Australia, {toRange(props.copyrightYear, currentYear)}
+        © Copyright eddy Australia, {toRange(props.copyrightYear, currentYear)}
       </p>
     </footer>
   );
