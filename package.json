@@ -1,8 +1,8 @@
 {
   "name": "brochure-site",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
-  "description": "A brochure site for Eddy",
+  "description": "A brochure site for eddy",
   "homepage": "https://github.com/eddy-au/brochure-site#readme",
   "bugs": "https://github.com/eddy-au/brochure-site/issues",
   "repository": {
