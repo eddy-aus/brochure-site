@@ -4,59 +4,60 @@
 @import '../mixins/display-p3';
 
 .#{$ns}-tiles {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: to-rem(12px);
+  display: grid;
+  grid-gap: to-rem(8px);
+  margin-bottom: to-rem(4px);
 }
 
 .#{$ns}-tile {
-  position: relative;
-  height: to-rem(80px);
+  padding-top: to-rem(16px);
+  padding-bottom: to-rem(16px);
   border-radius: to-rem(8px);
   @include display-p3(background-color, $color-gray-9);
 }
 
 .#{$ns}-tile__logo {
-  @include center();
+  display: block;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
   @include display-p3(fill, $color-snow);
-  height: to-rem(72px);
-  width: auto;
 }
 
 @include breakpoint(xs) {
   .#{$ns}-tiles {
-    gap: to-rem(20px);
+    grid-gap: to-rem(12px);
   }
 
   .#{$ns}-tile {
-    height: to-rem(104px);
+    padding-top: to-rem(20px);
+    padding-bottom: to-rem(20px);
+  }
+}
+
+@include breakpoint(s) {
+  .#{$ns}-tiles {
+    grid-gap: to-rem(14px);
+    margin-bottom: 0;
   }
 
-  .#{$ns}-tile__logo {
-    height: to-rem(88px);
+  .#{$ns}-tile {
+    padding-top: to-rem(32px);
+    padding-bottom: to-rem(32px);
   }
 }
 
 @include breakpoint(m) {
   .#{$ns}-tiles {
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr;
   }
-
   .#{$ns}-tile {
-    height: to-rem(168px);
-    width: calc(50% - #{to-rem(10px)});
+    display: flex;
   }
 }
 
 @include breakpoint(l) {
-  .#{$ns}-tile__logo {
-    height: to-rem(96px);
-  }
-}
-
-@include breakpoint(xl) {
-  .#{$ns}-tile__logo {
-    height: to-rem(104px);
+  .#{$ns}-tiles {
+    grid-gap: to-rem(16px);
   }
 }
