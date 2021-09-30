@@ -11,6 +11,14 @@
   padding-left: to-rem(24px);
 }
 
+.#{$ns}-section--secondary:last-of-type {
+  margin-bottom: to-rem(16px);
+}
+
+.#{$ns}-section--tertiary:last-of-type {
+  margin-bottom: to-rem(16px);
+}
+
 .#{$ns}-section__inner {
   position: relative;
 }
@@ -253,6 +261,14 @@
     padding-left: to-rem(40px);
   }
 
+  .#{$ns}-section--secondary:last-of-type {
+    margin-bottom: to-rem(20px);
+  }
+
+  .#{$ns}-section--tertiary:last-of-type {
+    margin-bottom: to-rem(20px);
+  }
+
   .#{$ns}-section__inner:nth-of-type(1) {
     padding-top: to-rem(24px);
     padding-bottom: to-rem(20px);
@@ -377,6 +393,14 @@
   .#{$ns}-section {
     padding-right: to-rem(64px);
     padding-left: to-rem(64px);
+  }
+
+  .#{$ns}-section--secondary:last-of-type {
+    margin-bottom: to-rem(32px);
+  }
+
+  .#{$ns}-section--tertiary:last-of-type {
+    margin-bottom: to-rem(32px);
   }
 
   .#{$ns}-section__inner:nth-of-type(1) {
@@ -507,6 +531,14 @@
     flex-direction: row;
     padding-right: to-rem(104px);
     padding-left: to-rem(104px);
+  }
+
+  .#{$ns}-section--secondary:last-of-type {
+    margin-bottom: to-rem(52px);
+  }
+
+  .#{$ns}-section--tertiary:last-of-type {
+    margin-bottom: to-rem(52px);
   }
 
   .#{$ns}-section:nth-of-type(even) {

@@ -1,9 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import Avatar from '../components/avatar';
 import Context from '../components/context';
 import Footer from '../components/footer';
 import Logo from '../components/logo';
+import Punc from '../components/punc';
 import Section from '../components/section';
 import { namespace as ns } from '../../config';
 
@@ -212,6 +214,123 @@ const Home = () => {
             solutions that cater to the unique needs of your students and
             institution quickly.
           </p>
+        </Section>
+        <Section heading="Our Leadership Team" type="secondary">
+          <p>
+            Behind every great technology solution is a team of great people.
+          </p>
+          <p>
+            eddy is driven by the smarts of a team of experienced EdTech
+            professionals who share the passion of getting next generation
+            online education into the hands of more learners.
+          </p>
+          <div className={`${ns}-grid ${ns}-grid--gutter`}>
+            <div
+              className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
+            >
+              <Avatar image="/images/kevin-lynch.jpg" />
+              <h3 className={`${ns}-h3`}>
+                Kevin Lynch
+                <Punc />
+              </h3>
+              <p>
+                eddy is the brainchild of Kevin Lynch &mdash; driven by a
+                relentless focus to create the world’s most transformative
+                education experiences.
+              </p>
+              <p>
+                Kevin has 17 years’ experience building and leading businesses
+                across education, technology, online learning, and digital
+                marketing spanning Australia &amp; New Zealand, APAC, USA, EMEA
+                and South America.
+              </p>
+              <p>
+                His world leading online learning acumen has been shaped through
+                the wide range of executive and leadership roles he has held
+                with Apollo Global Marketing & Technology Council, Open Colleges
+                Australia, and THINK: Education Group (now Laureate Universities
+                Australia).
+              </p>
+            </div>
+            <div
+              className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
+            >
+              <Avatar image="/images/marie-boyle.jpg" />
+              <h3 className={`${ns}-h3`}>
+                Marie Boyle
+                <Punc />
+              </h3>
+              <p>
+                In her Chief Technology Officer role at eddy, Marie brings
+                wealth of experience with a particular focus on identifying and
+                developing technology strategies to support rapid business
+                growth.
+              </p>
+              <p>
+                Previous experience includes General Manager of Technology at
+                Television New Zealand (TVNZ) where she led digital innovation,
+                change management and transformation.
+              </p>
+              <p>
+                Marie’s other leadership roles have included Trustpower, Vector,
+                Genesis Energy and Life Technologies.
+              </p>
+            </div>
+            <div
+              className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
+            >
+              <Avatar image="/images/matt-willis.jpg" />
+              <h3 className={`${ns}-h3`}>
+                Matt Willis
+                <Punc />
+              </h3>
+              <p>
+                As Chief Learning Officer at eddy, Matt leverages his 20 years
+                industry experience in the development and delivery of online
+                learning for Vocational Education &amp; Training, Higher
+                Education and English as a Second Language across Australia, New
+                Zealand and Japan.
+              </p>
+              <p>
+                Matt has previously held roles as Chief Education &amp;
+                Experience Officer for Open Colleges Australia where has was
+                responsible for all facets of post enrolment services (academic
+                & non-academic) as well as product development, compliance and
+                the partnership relationship with TAFE NSW.
+              </p>
+              <p>
+                Other experience has included senior management roles with
+                THINK: Education Group, JMC Academy, Thomson Education, AEON and
+                NOVA.
+              </p>
+            </div>
+            <div
+              className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
+            >
+              <Avatar image="/images/nick-coulman.jpg" />
+              <h3 className={`${ns}-h3`}>
+                Nick Coulman
+                <Punc />
+              </h3>
+              <p>
+                Joining eddy in early 2021, Nick is a results-driven and
+                passionate Growth Marketing and Customer Experience leader with
+                more than 15 years’ experience in retail, tech, education, and
+                disability sectors, both in Australia and overseas.
+              </p>
+              <p>
+                He has a proven track record of driving growth in a range of
+                industries, leading marketing at Open Colleges, an online VET
+                college, and growing the business to $120m across multiple
+                product verticals.
+              </p>
+              <p>
+                Before joining eddy, Nick drove growth at Hireup, an online
+                disability services platform, taking the company from $20m to
+                $180m in yearly sales.
+              </p>
+            </div>
+          </div>
         </Section>
       </main>
       <Footer copyrightYear={2021} />
