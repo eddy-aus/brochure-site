@@ -1,16 +1,15 @@
 @import '../utils/tokens';
+@import '../mixins/breakpoint';
 @import '../mixins/display-p3';
+@import '../functions/to-rem';
 
-.#{$ns}-h2 {
-  display: block;
-  padding-right: to-rem(24px);
-  padding-left: to-rem(24px);
-  margin-top: to-rem(24px);
+.#{$ns}-h3 {
   margin-bottom: to-rem(16px);
   font-family: $font-family-headings;
-  font-size: $font-size-xxxxl;
+  font-size: $font-size-s;
   font-weight: 500;
-  line-height: to-rem(48px);
+  line-height: to-rem(24px);
+  white-space: nowrap;
 }
 
 .#{$ns}-link {
@@ -34,50 +33,35 @@
 }
 
 @include breakpoint(xs) {
-  .#{$ns}-h2 {
-    padding-right: to-rem(40px);
-    padding-left: to-rem(40px);
-    margin-top: to-rem(40px);
+  .#{$ns}-h3 {
     margin-bottom: to-rem(24px);
-    font-size: $font-size-xxxxxl;
+    font-size: $font-size-l;
   }
 }
 
 @include breakpoint(s) {
-  .#{$ns}-h2 {
-    padding-right: to-rem(64px);
-    padding-left: to-rem(64px);
-    margin-top: to-rem(64px);
+  .#{$ns}-h3 {
     margin-bottom: to-rem(28px);
-    font-size: $font-size-xxxxxxl;
-    line-height: to-rem(56px);
+    font-size: $font-size-xl;
+    line-height: to-rem(32px);
   }
 }
 
 @include breakpoint(m) {
-  .#{$ns}-h2 {
-    padding-right: to-rem(104px);
-    padding-left: to-rem(104px);
-    margin-top: to-rem(104px);
-    font-size: $font-size-xxxxxxxl;
-    line-height: to-rem(64px);
+  .#{$ns}-h3 {
+    font-size: $font-size-xl;
+    line-height: to-rem(40px);
   }
 }
 
 @include breakpoint(l) {
-  .#{$ns}-h2 {
-    margin-bottom: to-rem(32px);
-    font-size: $font-size-xxxxxxxxl;
-    line-height: to-rem(72px);
+  .#{$ns}-h3 {
+    font-size: $font-size-xxl;
   }
 }
 
 @include breakpoint(xl) {
-  .#{$ns}-h2 {
-    max-width: to-rem(1448px);
-    margin-right: auto;
-    margin-left: auto;
-    font-size: $font-size-xxxxxxxxxl;
-    line-height: to-rem(80px);
+  .#{$ns}-h3 {
+    font-size: $font-size-xxxl;
   }
 }

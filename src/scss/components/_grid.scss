@@ -1,0 +1,70 @@
+@use "sass:math";
+@import '../utils/tokens';
+@import '../functions/to-rem';
+@import '../mixins/breakpoint';
+
+.#{$ns}-grid {
+  display: grid;
+  grid-gap: 0;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.#{$ns}-grid--gutter {
+  grid-gap: to-rem(24px) 0;
+}
+
+@for $i from 1 through 12 {
+  $result: math.div(100%, 12) * $i;
+
+  .#{$ns}-grid__item--s-#{$i} {
+    grid-column-end: span $i;
+  }
+}
+
+@include breakpoint(xs) {
+  .#{$ns}-grid--gutter {
+    grid-gap: to-rem(40px) 0;
+  }
+}
+
+@include breakpoint(m) {
+  .#{$ns}-grid--gutter {
+    grid-gap: to-rem(40px);
+  }
+
+  @for $i from 1 through 12 {
+    $result: math.div(100%, 12) * $i;
+
+    .#{$ns}-grid__item--m-#{$i} {
+      grid-column-end: span $i;
+    }
+  }
+}
+
+@include breakpoint(l) {
+  .#{$ns}-grid--gutter {
+    grid-gap: to-rem(64px);
+  }
+
+  @for $i from 1 through 12 {
+    $result: math.div(100%, 12) * $i;
+
+    .#{$ns}-grid__item--l-#{$i} {
+      grid-column-end: span $i;
+    }
+  }
+}
+
+@include breakpoint(xl) {
+  .#{$ns}-grid--gutter {
+    grid-gap: to-rem(64px);
+  }
+
+  @for $i from 1 through 12 {
+    $result: math.div(100%, 12) * $i;
+
+    .#{$ns}-grid__item--xl-#{$i} {
+      grid-column-end: span $i;
+    }
+  }
+}
