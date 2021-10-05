@@ -49,11 +49,7 @@ const Nav = () => {
   return (
     <>
       <nav className={block()}>
-        <Link
-          className={element('logo-outer')}
-          onClick={handleClick}
-          to="/home"
-        >
+        <Link className={element('logo-outer')} onClick={handleClick} to="/">
           <Logo className={element('logo')} />
         </Link>
         <div className={element('menu')}>
@@ -61,9 +57,10 @@ const Nav = () => {
             <div className={element('item')} key={page}>
               <NavLink
                 className={element('link')}
+                exact
                 onClick={handleClick}
                 innerRef={(linkRef) => (linkRefs.current[index] = linkRef)}
-                to={'/' + page.toKebabCase()}
+                to={'/' + (page === 'home' ? '' : page)}
               >
                 {page.toTitleCase()}
               </NavLink>

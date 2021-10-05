@@ -1,12 +1,7 @@
 import 'on-the-case';
 import { useEffect, useState } from 'react';
 import { render } from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Context from './components/context';
 import Preloader from './components/preloader';
 import Nav from './components/nav';
@@ -50,8 +45,7 @@ const App = () => {
         <Router>
           <Nav />
           <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route component={Home} path="/home" />
+            <Route component={Home} exact path="/" />
             <Route component={Contact} path="/contact" />
           </Switch>
         </Router>
