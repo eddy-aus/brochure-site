@@ -1,19 +1,53 @@
 @import '../utils/tokens';
+@import '../functions/to-display-p3';
 @import '../functions/to-rem';
 @import '../mixins/center';
 @import '../mixins/display-p3';
 
 .#{$ns}-tiles {
-  display: grid;
   grid-gap: to-rem(8px);
   margin-bottom: to-rem(4px);
 }
 
 .#{$ns}-tile {
+  position: relative;
   padding-top: to-rem(16px);
   padding-bottom: to-rem(16px);
   border-radius: to-rem(8px);
+  outline: none;
   @include display-p3(background-color, $color-gray-9);
+  transition: background-color 300ms ease;
+}
+
+.#{$ns}-tile:hover {
+  @include display-p3(background-color, $color-gray-8);
+}
+
+.#{$ns}-tile:focus {
+  @include display-p3(background-color, $color-gray-8);
+}
+
+.#{$ns}-tile:active {
+  @include display-p3(background-color, $color-gray-9);
+}
+
+.#{$ns}-tile::before {
+  content: '';
+  position: absolute;
+  top: to-rem(-2px);
+  left: to-rem(-2px);
+  height: calc(100% + #{to-rem(4px)});
+  width: calc(100% + #{to-rem(4px)});
+  border-radius: to-rem(10px);
+  box-shadow: 0 0 0 0 rgba($color-focus-outline, 0);
+  box-shadow: 0 0 0 0 to-display-p3(rgba($color-focus-outline, 0));
+  transition: box-shadow 300ms ease;
+  pointer-events: none;
+}
+
+.#{$ns}-tile:focus::before {
+  box-shadow: 0 0 0 to-rem(3px) $color-focus-outline;
+  box-shadow: 0 0 0 to-rem(3px) to-display-p3($color-focus-outline);
 }
 
 .#{$ns}-tile__logo {
@@ -21,7 +55,7 @@
   width: 50%;
   margin-right: auto;
   margin-left: auto;
-  @include display-p3(fill, $color-snow);
+  @include display-p3(fill, $color-gray-0);
 }
 
 @include breakpoint(xs) {
@@ -48,9 +82,6 @@
 }
 
 @include breakpoint(m) {
-  .#{$ns}-tiles {
-    grid-template-columns: 1fr 1fr;
-  }
   .#{$ns}-tile {
     display: flex;
   }
