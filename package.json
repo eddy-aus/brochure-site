@@ -1,6 +1,6 @@
 {
   "name": "brochure-site",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
   "description": "A brochure site for eddy",
   "homepage": "https://github.com/eddy-au/brochure-site#readme",
@@ -18,7 +18,7 @@
     "start": "webpack serve --env development"
   },
   "dependencies": {
-    "on-the-case": "^2.0.4",
+    "on-the-case": "^2.1.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -27,9 +27,9 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
-    "@babel/core": "^7.15.5",
+    "@babel/core": "^7.15.8",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.12.10",
     "@babel/register": "^7.15.3",
     "autoprefixer": "^10.3.7",
@@ -48,8 +48,8 @@
     "sass-loader": "^12.1.0",
     "sort-package-json": "^1.52.0",
     "style-loader": "^3.3.0",
-    "webpack": "^5.56.1",
-    "webpack-cli": "^4.8.0",
+    "webpack": "^5.57.1",
+    "webpack-cli": "^4.9.0",
     "webpack-dev-server": "^4.3.1"
   }
 }
