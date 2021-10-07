@@ -25,19 +25,23 @@
 }
 
 .#{$ns}-link {
-  padding: to-rem(8px);
-  margin-left: to-rem(-8px);
+  padding: to-rem(12px);
+  border-radius: to-rem(8px);
+  outline: none;
+  box-shadow: 0 0 0 0 rgba($color-focus-outline, 0);
+  box-shadow: 0 0 0 0 to-display-p3(rgba($color-focus-outline, 0));
+  margin-left: to-rem(-12px);
   @include display-p3(color, $color-gray-0);
   font-weight: $font-weight-regular;
   @include display-p3(text-decoration-color, $color-brand);
   text-decoration-thickness: to-rem(2px);
   text-underline-offset: to-rem(4px);
+  transition: box-shadow 300ms ease;
 }
 
 .#{$ns}-link:focus {
-  @include display-p3(outline-color, $color-focus-outline);
-  outline-style: solid;
-  outline-width: to-rem(3px);
+  box-shadow: 0 0 0 to-rem(3px) $color-focus-outline;
+  box-shadow: 0 0 0 to-rem(3px) to-display-p3($color-focus-outline);
 }
 
 .#{$ns}-punctuation {
