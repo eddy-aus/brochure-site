@@ -1,23 +1,24 @@
-import { useContext } from 'react';
-import Context from './context';
+// import { useContext } from 'react';
+// import Context from './context';
 import { BEM } from '../utils';
 
 const { block, element } = BEM('preloader');
 
 const Preloader = () => {
-  const { isReady, setIsLoading } = useContext(Context);
-  const classNames = block() + (isReady ? ' ready' : '');
+  // const { isReady, setIsLoading } = useContext(Context);
+  // const classNames = block() + (isReady ? ' ready' : '');
 
-  const handleTransitionEnd = () => {
-    if (!isReady) setIsLoading(false);
-  };
+  // const handleTransitionEnd = () => {
+  //   if (!isReady) setIsLoading(false);
+  // };
 
   return (
     <svg
-      className={classNames}
+      // className={classNames}
+      className={block() + ' ready'}
       width="80"
       height="80"
-      onTransitionEnd={handleTransitionEnd}
+      // onTransitionEnd={handleTransitionEnd}
       viewBox="0 0 80 80"
       xmlns="http://www.w3.org/2000/svg"
     >
