@@ -33,8 +33,14 @@ const commonConfig = {
         exclude: /node_modules/,
         test: /\.s[ac]ss$/,
         use: [
-          'style-loader',
-          { loader: 'css-loader', options: { url: false } },
+          {
+            loader: 'style-loader',
+            options: { injectType: 'singletonStyleTag' },
+          },
+          {
+            loader: 'css-loader',
+            options: { url: false },
+          },
           'postcss-loader',
           'sass-loader',
         ],

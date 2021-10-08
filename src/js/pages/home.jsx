@@ -1,7 +1,7 @@
-import { useContext, useEffect } from 'react';
+// import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '../components/avatar';
-import Context from '../components/context';
+// import Context from '../components/context';
 import Footer from '../components/footer';
 import Logo from '../components/logo';
 import Punc from '../components/punc';
@@ -10,11 +10,11 @@ import SEO from '../components/seo';
 import { namespace as ns, organisation as org } from '../../config';
 
 const Home = () => {
-  const { setIsReady } = useContext(Context);
+  // const { setIsReady } = useContext(Context);
 
-  useEffect(() => {
-    setIsReady(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsReady(true);
+  // }, []);
 
   return (
     <>
@@ -34,12 +34,18 @@ const Home = () => {
         <div
           className={ns + '-banner'}
           style={{
-            backgroundImage: 'url("/images/eddy-hero.jpg")',
+            backgroundImage: 'url("/assets/eddy-banner.jpg")',
           }}
         >
           <Logo className={ns + '-banner__logo'} />
         </div>
-        <Section heading="Meet eddy" image="/images/meet-eddy">
+        <Section
+          heading="Meet eddy"
+          image={{
+            default: '/assets/meet-eddy.png',
+            retina: '/assets/meet-eddy@2x.png',
+          }}
+        >
           <p>
             eddy is a breakthrough Edtech solution, enabling universities and
             the wider education sector to deliver online learning that prepares
@@ -183,7 +189,10 @@ const Home = () => {
         </Section>
         <Section
           heading="More Than Technology Solutions"
-          image="/images/more-than-technology-solutions"
+          image={{
+            default: '/assets/more-than-technology-solutions.png',
+            retina: '/assets/more-than-technology-solutions@2x.png',
+          }}
         >
           <p>
             Enabling quality online offerings requires more than stand-alone
@@ -196,7 +205,16 @@ const Home = () => {
         </Section>
         <Section
           heading="Powered By People"
-          image="/images/powered-by-people"
+          image={{
+            lge: {
+              default: '/assets/powered-by-people-lge.jpg',
+              retina: '/assets/powered-by-people-lge@2x.jpg',
+            },
+            sml: {
+              default: '/assets/powered-by-people-sml.jpg',
+              retina: '/assets/powered-by-people-sml@2x.jpg',
+            },
+          }}
           type="tertiary"
         >
           <p>
@@ -205,7 +223,13 @@ const Home = () => {
             importantly, student outcomes at scale.
           </p>
         </Section>
-        <Section heading="Market Expansion" image="/images/market-expansion">
+        <Section
+          heading="Market Expansion"
+          image={{
+            default: '/assets/market-expansion.png',
+            retina: '/assets/market-expansion@2x.png',
+          }}
+        >
           <p>
             Our acquisition team enables partners to expand their market through
             best in breed digital marketing driving prospective students to have
@@ -215,7 +239,10 @@ const Home = () => {
         </Section>
         <Section
           heading="Product Development"
-          image="/images/product-development"
+          image={{
+            default: '/assets/product-development.png',
+            retina: '/assets/product-development@2x.png',
+          }}
         >
           <p>
             Our product development team are experts in online development. We
@@ -226,7 +253,10 @@ const Home = () => {
         </Section>
         <Section
           heading="Technology Enablers"
-          image="/images/technology-enablers"
+          image={{
+            default: '/assets/technology-enablers.png',
+            retina: '/assets/technology-enablers@2x.png',
+          }}
         >
           <p>
             Our technology team are agile and are constantly delivering to the
@@ -249,7 +279,12 @@ const Home = () => {
             <div
               className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
             >
-              <Avatar image="/images/kevin-lynch.jpg" />
+              <Avatar
+                image={{
+                  default: '/assets/kevin-lynch.jpg',
+                  retina: '/assets/kevin-lynch@2x.jpg',
+                }}
+              />
               <h3 className={`${ns}-h3`}>
                 Kevin Lynch
                 <Punc />
@@ -276,7 +311,12 @@ const Home = () => {
             <div
               className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
             >
-              <Avatar image="/images/marie-boyle.jpg" />
+              <Avatar
+                image={{
+                  default: '/assets/marie-boyle.jpg',
+                  retina: '/assets/marie-boyle@2x.jpg',
+                }}
+              />
               <h3 className={`${ns}-h3`}>
                 Marie Boyle
                 <Punc />
@@ -300,7 +340,12 @@ const Home = () => {
             <div
               className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
             >
-              <Avatar image="/images/matt-willis.jpg" />
+              <Avatar
+                image={{
+                  default: '/assets/matt-willis.jpg',
+                  retina: '/assets/matt-willis@2x.jpg',
+                }}
+              />
               <h3 className={`${ns}-h3`}>
                 Matt Willis
                 <Punc />
@@ -328,7 +373,12 @@ const Home = () => {
             <div
               className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
             >
-              <Avatar image="/images/nick-coulman.jpg" />
+              <Avatar
+                image={{
+                  default: '/assets/nick-coulman.jpg',
+                  retina: '/assets/nick-coulman@2x.jpg',
+                }}
+              />
               <h3 className={`${ns}-h3`}>
                 Nick Coulman
                 <Punc />

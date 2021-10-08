@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react';
-import Context from '../components/context';
+// import { useContext, useEffect } from 'react';
+// import Context from '../components/context';
 import Footer from '../components/footer';
 import Preloader from '../components/preloader';
 import Punc from '../components/punc';
@@ -7,11 +7,11 @@ import SEO from '../components/seo';
 import { namespace as ns, organisation as org } from '../../config';
 
 const Contact = () => {
-  const { setIsReady } = useContext(Context);
+  // const { setIsReady } = useContext(Context);
 
-  useEffect(() => {
-    setIsReady(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsReady(true);
+  // }, []);
 
   return (
     <>

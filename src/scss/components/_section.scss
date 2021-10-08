@@ -205,15 +205,6 @@
   width: 106%;
 }
 
-.#{$ns}-section__image--s.#{$ns}-section__image--2x,
-.#{$ns}-section__image--m,
-.#{$ns}-section__image--m.#{$ns}-section__image--2x,
-.#{$ns}-section__image--l,
-.#{$ns}-section__image--l.#{$ns}-section__image--2x {
-  display: none;
-  visibility: hidden;
-}
-
 .#{$ns}-section--tertiary .#{$ns}-section__image {
   position: absolute;
   bottom: to-rem(12px);
@@ -242,16 +233,6 @@
 @include has-retina() {
   .#{$ns}-section__content p {
     font-weight: $font-weight-light;
-  }
-
-  .#{$ns}-section__image--s {
-    display: none;
-    visibility: hidden;
-  }
-
-  .#{$ns}-section__image--s.#{$ns}-section__image--2x {
-    display: initial;
-    visibility: initial;
   }
 }
 
@@ -359,33 +340,11 @@
     margin-left: to-rem(20px);
   }
 
-  .#{$ns}-section__image--s.#{$ns}-section__image--2x {
-    display: none;
-    visibility: hidden;
-  }
-
-  .#{$ns}-section__image--m {
-    display: initial;
-    visibility: initial;
-  }
-
   .#{$ns}-section--tertiary .#{$ns}-section__image {
     bottom: to-rem(20px);
     left: to-rem(-40px);
     width: calc(100% + #{to-rem(80px)});
     padding-top: calc(100% + #{to-rem(80px)});
-  }
-
-  @include has-retina() {
-    .#{$ns}-section__image--m {
-      display: none;
-      visibility: hidden;
-    }
-
-    .#{$ns}-section__image--m.#{$ns}-section__image--2x {
-      display: initial;
-      visibility: initial;
-    }
   }
 }
 
@@ -494,33 +453,11 @@
     margin-left: to-rem(32px);
   }
 
-  .#{$ns}-section__image--m.#{$ns}-section__image--2x {
-    display: none;
-    visibility: hidden;
-  }
-
-  .#{$ns}-section__image--l {
-    display: initial;
-    visibility: initial;
-  }
-
   .#{$ns}-section--tertiary .#{$ns}-section__image {
     bottom: to-rem(32px);
     left: to-rem(-64px);
     width: calc(100% + #{to-rem(128px)});
     padding-top: calc(100% + #{to-rem(128px)});
-  }
-
-  @include has-retina() {
-    .#{$ns}-section__image--l {
-      display: none;
-      visibility: hidden;
-    }
-
-    .#{$ns}-section__image--l.#{$ns}-section__image--2x {
-      display: initial;
-      visibility: initial;
-    }
   }
 }
 

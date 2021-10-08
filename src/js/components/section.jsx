@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { BEM, useEventListenter } from '../utils';
+import { BEM, isHiRes, useEventListenter } from '../utils';
 import Punc from './punc';
 
 const { block, element, modifier } = BEM('section');
@@ -41,58 +41,9 @@ const PrimarySection = (props) => {
               vectorEffect="non-scaling-stroke"
             />
             <image
-              className={`${element('image')} ${modifier('s', 'image')}`}
+              className={element('image')}
               height="100%"
-              href={image.trim() + '-320.png'}
-              width="106%"
-              x="-3%"
-              y="-22.25%"
-            />
-            <image
-              className={`${element('image')} ${modifier(
-                's',
-                'image',
-              )} ${modifier('2x', 'image')}`}
-              height="100%"
-              href={image.trim() + '-320-@2x.png'}
-              width="106%"
-              x="-3%"
-              y="-22.25%"
-            />
-            <image
-              className={`${element('image')} ${modifier('m', 'image')}`}
-              height="100%"
-              href={image.trim() + '-480.png'}
-              width="106%"
-              x="-3%"
-              y="-22.25%"
-            />
-            <image
-              className={`${element('image')} ${modifier(
-                'm',
-                'image',
-              )} ${modifier('2x', 'image')}`}
-              height="100%"
-              href={image.trim() + '-480-@2x.png'}
-              width="106%"
-              x="-3%"
-              y="-22.25%"
-            />
-            <image
-              className={`${element('image')} ${modifier('l', 'image')}`}
-              height="100%"
-              href={image.trim() + '-768.png'}
-              width="106%"
-              x="-3%"
-              y="-22.25%"
-            />
-            <image
-              className={`${element('image')} ${modifier(
-                'l',
-                'image',
-              )} ${modifier('2x', 'image')}`}
-              height="100%"
-              href={image.trim() + '-768-@2x.png'}
+              href={isHiRes ? image.retina : image.default}
               width="106%"
               x="-3%"
               y="-22.25%"
@@ -137,15 +88,19 @@ const SecondarySection = (props) => {
 
 const TertiarySection = (props) => {
   const { children, heading, headingPunctuation, image } = props;
-  const [imgSrc, setImgSrc] = useState(
-    window.innerWidth > 768 ? image + '-1024-@2x.jpg' : image + '-768-@2x.jpg',
+  const [imgSize, setImgSize] = useState(
+    window.innerWidth > 768 ? 'lge' : 'sml',
   );
 
   const handleResize = () => {
     if (window.innerWidth > 768) {
-      setImgSrc(image + '-1280-@2x.jpg');
+      if (imgSize !== 'lge') {
+        setImgSize('lge');
+      }
     } else {
-      setImgSrc(image + '-768-@2x.jpg');
+      if (imgSize !== 'sml') {
+        setImgSize('sml');
+      }
     }
   };
 
@@ -159,12 +114,25 @@ const TertiarySection = (props) => {
           <Punc>{headingPunctuation}</Punc>
         </h2>
         <div className={element('content')}>{children}</div>
-        <div
-          className={element('image')}
-          style={{
-            backgroundImage: `url(${imgSrc})`,
-          }}
-        />
+        {imgSize === 'sml' ? (
+          <div
+            className={element('image')}
+            style={{
+              backgroundImage: isHiRes
+                ? `url(${image.sml.retina})`
+                : `url(${image.sml.default})`,
+            }}
+          />
+        ) : (
+          <div
+            className={element('image')}
+            style={{
+              backgroundImage: isHiRes
+                ? `url(${image.lge.retina})`
+                : `url(${image.lge.default})`,
+            }}
+          />
+        )}
       </div>
     </section>
   );
@@ -193,7 +161,22 @@ Section.propTypes = {
   ]).isRequired,
   heading: PropTypes.string.isRequired,
   headingPunctuation: PropTypes.oneOf(['.', '?', '!', '...', ',']),
-  image: PropTypes.string,
+  image: PropTypes.oneOf([
+    PropTypes.shape({
+      default: PropTypes.string.isRequired,
+      retina: PropTypes.string.isRequired,
+    }),
+    PropTypes.shape({
+      lge: PropTypes.shape({
+        default: PropTypes.string.isRequired,
+        retina: PropTypes.string.isRequired,
+      }).isRequired,
+      sml: PropTypes.shape({
+        default: PropTypes.string.isRequired,
+        retina: PropTypes.string.isRequired,
+      }).isRequired,
+    }),
+  ]),
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
 };
 
