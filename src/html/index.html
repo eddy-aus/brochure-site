@@ -1,19 +1,57 @@
 <!DOCTYPE html>
 <html lang="en-AU">
-  <head>
+  <head prefix="og: https://ogp.me/ns#">
     <meta charset="UTF-8" />
-    <title>eddy Australia</title>
-    <meta content="eddy Australia" name="description" />
-    <meta content="#1e1e1e" name="theme-color" />
+    <title><%= title %></title>
+    <meta
+      content="<%= description %>"
+      data-react-helmet="true"
+      name="description"
+    />
     <meta content="initial-scale=1, viewport-fit=cover" name="viewport" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta content="<%= themeColor %>" name="theme-color" />
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cloud.typography.com/6280760/6697232/css/fonts.css"
     />
+    <meta
+      content="<%= description %>"
+      data-react-helmet="true"
+      property="og:description"
+    />
+    <meta content="<%= image %>" data-react-helmet="true" property="og:image" />
+    <meta content="en_AU" property="og:locale" />
+    <meta content="<%= title %>" data-react-helmet="true" property="og:title" />
+    <meta content="website" property="og:type" />
+    <meta content="<%= URL %>" data-react-helmet="true" property="og:url" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta
+      content="<%= description %>"
+      data-react-helmet="true"
+      name="twitter:description"
+    />
+    <meta
+      content="<%= image %>"
+      data-react-helmet="true"
+      name="twitter:image"
+    />
+    <meta
+      content="<%= imageAlt %>"
+      data-react-helmet="true"
+      name="twitter:image:alt"
+    />
+    <meta content="<%= URL %>" data-react-helmet="true" name="twitter:site" />
+    <meta
+      content="<%= title %>"
+      data-react-helmet="true"
+      name="twitter:title"
+    />
+    <meta content="<%= robots %>" name="robots" />
+    <link data-react-helmet="true" href="<%= URL %>" rel="canonical" />
+    <link href="/favicon.ico" rel="icon" sizes="any" />
+    <link href="/assets/icon.svg" rel="icon" type="image/svg+xml" />
+    <link href="/assets/apple-touch-icon.png" rel="apple-touch-icon" />
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -30,7 +68,7 @@
     <!-- End Google Tag Manager -->
   </head>
   <body>
-    <div class="<%= namespace %>-app"></div>
+    <div class="<%= ns %>-app"></div>
     <noscript>
       <h1>Uh oh!</h1>
       <p>

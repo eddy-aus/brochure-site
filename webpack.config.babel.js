@@ -1,11 +1,11 @@
 import 'on-the-case';
-import CnameWebpackPlugin from 'cname-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CnamePlugin from 'cname-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
+import HtmlPlugin from 'html-webpack-plugin';
 import path from 'path';
-import { namespace, pages } from './src/config';
+import { address, namespace as ns, pages } from './src/config';
 
-const commonWebpackConfig = {
+const commonConfig = {
   entry: './src/js/app.jsx',
   module: {
     rules: [
@@ -42,26 +42,30 @@ const commonWebpackConfig = {
     ],
   },
   plugins: [
-    new CnameWebpackPlugin({
-      domain: 'www.eddy.com.au',
+    new CnamePlugin({
+      domain: address.nakedDomain,
     }),
-    new CopyWebpackPlugin({
+    new CopyPlugin({
       patterns: [{ from: path.join(__dirname, './src/static'), to: '.' }],
     }),
-    ...pages.map((page) => {
-      const dirname = 'dirname' in page ? page.dirname : './';
-      const filename = 'filename' in page ? page.filename : 'index.html';
-      const pageTitle = page.title.toTitleCase();
-
-      return new HtmlWebpackPlugin({
-        inject: 'body',
-        filename: dirname + filename,
-        template: path.join(__dirname, './src/html/index.html'),
-        templateParameters: {
-          namespace,
-        },
-      });
-    }),
+    ...pages.map(
+      (page) =>
+        new HtmlPlugin({
+          inject: 'body',
+          filename: './' + page.path + page.filename,
+          template: path.join(__dirname, './src/html/index.html'),
+          templateParameters: {
+            ns,
+            description: page.description,
+            image: page.image,
+            imageAlt: page.imageAlt,
+            robots: page.robots,
+            themeColor: page.themeColor,
+            title: page.title,
+            URL: page.URL,
+          },
+        }),
+    ),
   ],
   resolve: {
     alias: {
@@ -76,7 +80,7 @@ const commonWebpackConfig = {
 export default (env) => {
   if (env.development) {
     return {
-      ...commonWebpackConfig,
+      ...commonConfig,
       devServer: {
         port: 3000,
         static: ['src/static'],
@@ -90,11 +94,11 @@ export default (env) => {
   }
 
   return {
-    ...commonWebpackConfig,
+    ...commonConfig,
     mode: 'production',
     output: {
       filename: 'js/app.js',
-      publicPath: 'https://www.eddy.com.au',
+      publicPath: address.URL,
     },
   };
 };

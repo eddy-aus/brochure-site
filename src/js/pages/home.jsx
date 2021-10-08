@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import Avatar from '../components/avatar';
 import Context from '../components/context';
@@ -7,7 +6,8 @@ import Footer from '../components/footer';
 import Logo from '../components/logo';
 import Punc from '../components/punc';
 import Section from '../components/section';
-import { namespace as ns } from '../../config';
+import SEO from '../components/seo';
+import { namespace as ns, organisation as org } from '../../config';
 
 const Home = () => {
   const { setIsReady } = useContext(Context);
@@ -18,9 +18,10 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Home | eddy Australia</title>
-      </Helmet>
+      <SEO
+        description={`${org} is a breakthrough Edtech solution, enabling the education sector to deliver online learning to prepare today's learners for tomorrow's opportunities.`}
+        title="home"
+      />
       <main>
         <h1
           style={{
