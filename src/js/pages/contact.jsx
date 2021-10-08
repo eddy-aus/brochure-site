@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import Context from '../components/context';
 import Footer from '../components/footer';
 import Preloader from '../components/preloader';
 import Punc from '../components/punc';
-import { namespace as ns } from '../../config';
+import SEO from '../components/seo';
+import { namespace as ns, organisation as org } from '../../config';
 
 const Contact = () => {
   const { setIsReady } = useContext(Context);
@@ -15,9 +15,10 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact | eddy Australia</title>
-      </Helmet>
+      <SEO
+        description={`Get in touch to see how ${org}'s proprietary technology and data platform can help deliver high quality and meaningful online programmes at scale.`}
+        title="contact"
+      />
       <main>
         <h1
           style={{
