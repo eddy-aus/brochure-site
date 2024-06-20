@@ -245,7 +245,7 @@ const Home = () => {
             institution quickly.
           </p>
         </Section>
-        <Section heading="Our Leadership Team" type="secondary">
+        {/* <Section heading="Our Leadership Team" type="secondary">
           <p>
             Behind every great technology solution is a team of great people.
           </p>
@@ -349,7 +349,7 @@ const Home = () => {
                 NOVA.
               </p>
             </div>
-            {/* <div
+            <div
               className={`${ns}-grid__item ${ns}-grid__item--s-12 ${ns}-grid__item--m-6 ${ns}-grid__item--xl-3`}
             >
               <Avatar
@@ -379,9 +379,9 @@ const Home = () => {
                 disability services platform, taking the company from $20m to
                 $180m in yearly sales.
               </p>
-            </div> */}
+            </div>
           </div>
-        </Section>
+        </Section> */}
       </main>
       <Footer copyrightYear={2021} />
     </>
